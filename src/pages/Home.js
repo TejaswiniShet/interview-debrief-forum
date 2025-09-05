@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
-import { auth } from "../firebase";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -17,12 +16,14 @@ function Home() {
   }, []);
 
   return (
-    <div className="p-5">
-      <h2>Interview Posts</h2>
+    <div className="max-w-3xl mx-auto p-5">
+      <h2 className="text-2xl font-bold mb-6 text-center">Interview Posts</h2>
       {auth.currentUser && <PostForm />}
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
+      <div className="mt-4 space-y-4">
+        {posts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </div>
     </div>
   );
 }

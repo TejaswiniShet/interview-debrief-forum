@@ -18,8 +18,6 @@ function PostForm() {
         company,
         role,
         content,
-        upvotes: 0,
-        downvotes: 0,
         createdAt: serverTimestamp(),
         userId: auth.currentUser.uid,
       });
@@ -32,29 +30,40 @@ function PostForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-3 border rounded">
-      <input
-        type="text"
-        placeholder="Company"
-        value={company}
-        onChange={(e) => setCompany(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Role"
-        value={role}
-        onChange={(e) => setRole(e.target.value)}
-        required
-      />
-      <textarea
-        placeholder="Share your interview experience"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        required
-      />
-      <button type="submit">Post</button>
-    </form>
+    <div className="border rounded-lg shadow-md p-5 bg-white mb-6">
+      <h3 className="text-lg font-bold mb-3">Add New Post</h3>
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <input
+          type="text"
+          placeholder="Company"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          required
+          className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <input
+          type="text"
+          placeholder="Role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          required
+          className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <textarea
+          placeholder="Share your interview experience..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          required
+          className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+        >
+          Post
+        </button>
+      </form>
+    </div>
   );
 }
 
